@@ -1,0 +1,16 @@
+.table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 750px) {
+    .paper {
+        max-width: 40%;
+    }
+}

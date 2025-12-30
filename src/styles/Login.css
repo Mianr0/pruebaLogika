@@ -29,3 +29,7 @@
 .loginButton {
  display: flex;
 }
+
+body {
+    background: url("../assets/background.svg");
+}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../styles/Login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -9,23 +9,28 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setToken, setIsAuth } = useAuthStore();
+  const { token } = useAuthStore();
 
+  useEffect(() => {
+    if (token) {
+      setIsAuth(true);
+      navigate("/dashboard");
+    }
+  }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); 
-
     console.log("Username:", email);
     console.log("Password:", password);
     let data = {
       username: email,
       password: password
     }
-
     axios.post("https://dev.apinetbo.bekindnetwork.com/api/Authentication/Login", data)
     .then((response) => {
       setToken(response.data);
       setIsAuth(true);
-      navigate("/dashbord");
+      navigate("/dashboard");
     })
     .catch((error) => {
       console.error(error);

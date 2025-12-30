@@ -1,7 +1,11 @@
+import "./Header.css";
+
 export function Header() {
+
     return (
-        <>
-            <h1>Header</h1>
-        </>
+        <div className="header">
+            <img src="src/assets/logoHeader.svg" alt="" />
+            <img src="src/assets/iconAvatar.svg" alt="" />
+        </div>
     );
 }

@@ -17,7 +17,7 @@ export function Hero() {
   const [data, setData] = useState<ApiResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
   const [totalCount, setTotalCount] = useState(0);
 
@@ -111,7 +111,9 @@ export function Hero() {
           rowCount={totalCount}
           rows={data?.data?.data || []}
           columns={columns}
-          initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
+          initialState={{
+            pagination: { paginationModel: { pageSize: 10, page: 0 } },
+          }}
           pageSizeOptions={[5, 10, 20]}
           checkboxSelection={false}
           sx={{ border: 0 }}

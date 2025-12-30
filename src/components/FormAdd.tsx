@@ -9,6 +9,7 @@ export function FormAdd() {
   const [file, setFile] = useState<File | null>(null);
   const [color, setColor] = useState("");
   const [status, setStatus] = useState<number>(0);
+  const [isError, setIsError] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,10 +28,18 @@ export function FormAdd() {
       )
       .then((response) => {
         console.log(response.data);
+        /*         setName("");
+        setDescription("");
+        setFile(null);
+        setColor("");
+        setStatus(0);
+        setIsError(false);*/
         setOpen(false);
+        document.getElementById("form")?.reset();
       })
       .catch((error) => {
         console.error(error);
+        setIsError(true);
       });
   };
 
@@ -43,9 +52,14 @@ export function FormAdd() {
         id="myModal"
         className="modal"
         style={{ display: open ? "block" : "none" }}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            setOpen(false);
+          }
+        }}
       >
         <div className="modal-content">
-          <form onSubmit={handleSubmit} className="close">
+          <form onSubmit={handleSubmit} className="close" id="form">
             <h2>Crear categoria</h2>
             <label htmlFor="">Nombre de la categoria*</label>
             <input
@@ -73,11 +87,13 @@ export function FormAdd() {
                 value={status}
                 onChange={(e) => {
                   setStatus(e.target.checked ? 1 : 0);
-                  console.log(status);
                 }}
               />
               <span className="slider round"></span>
             </label>
+            {isError && (
+              <label style={{ color: "red" }}>Error en la solicitud</label>
+            )}
             <button type="submit">Crear</button>
           </form>
         </div>

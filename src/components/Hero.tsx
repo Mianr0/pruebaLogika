@@ -34,7 +34,26 @@ export function Hero() {
     {
       field: "status",
       renderCell: (params: any) => (
-        <span>{params.value ? "Activo" : "Inactivo"}</span>
+        <span
+          style={{
+            backgroundColor: params.value ? "#D2E5D0" : "#FFD2D2",
+            color: params.value ? "#0B8A00" : "#C0392B",
+            borderColor: params.value ? "#0B8A00" : "#C0392B",
+            margin: "15px",
+            border: "1px solid",
+            borderRadius: "4px",
+            fontWeight: "bold",
+            display: "flex",
+            width: "80px",
+            height: "20px",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+            alignContent: "center",
+          }}
+        >
+          {params.value ? "Activo" : "Inactivo"}
+        </span>
       ),
       headerName: "Estado",
       width: 150,
@@ -98,9 +117,13 @@ export function Hero() {
 
   return (
     <div className="table" data-cy="loadingTable">
-      <h1>Categorias</h1>
-      <FormAdd data-cy="formAdd" />
-      <Paper sx={{ height: 400, width: "80%" }} className="paper">
+      <div className="title-header">
+        <h1>Categorias</h1>
+      </div>
+      <div className="button-header">
+        <FormAdd data-cy="formAdd" />
+      </div>
+      <Paper sx={{ height: 350, width: "80%" }} className="paper">
         <DataGrid
           paginationMode="server"
           paginationModel={{ pageSize: pageSize, page: page }}

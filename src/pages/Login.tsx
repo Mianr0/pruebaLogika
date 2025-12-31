@@ -52,28 +52,44 @@ export function Login() {
       <main className="loginMain">
         <div className="loginForm">
           <img src="src/assets/logoLogin.svg" alt="Logo" />
-          <h1>¡Empieza a conectar tu comunidad ante buenas acciones!</h1>
+          <h2>¡Empieza a conectar tu comunidad ante buenas acciones!</h2>
           <form onSubmit={handleSubmit} className="form">
             <label htmlFor="username">Correo Electronico*</label>
-            <input
-              type="email"
-              name="username"
-              id="username"
-              data-cy="username"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <div className="input-container">
+              <img
+                src="src/assets/email.svg"
+                alt="email icon"
+                className="input-icon"
+              />
+              <input
+                type="email"
+                name="username"
+                id="username"
+                data-cy="username"
+                placeholder="Correo Electronico"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
             <label htmlFor="password">Contraseña*</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              data-cy="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <div className="input-container">
+              <img
+                src="src/assets/password.svg"
+                alt="password icon"
+                className="input-icon"
+              />
+              <input
+                type="password"
+                name="password"
+                id="password"
+                data-cy="password"
+                placeholder="Contraseña"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
             <a href="">Recuperar contraseña</a>
             <button type="submit" className="loginButton" data-cy="login-btn">
               Ingresar

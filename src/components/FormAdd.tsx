@@ -44,7 +44,7 @@ export function FormAdd() {
         onClick={() => setOpen(true)}
         data-cy="buttonOpenModal"
       >
-        Open Modal
+        Crear tipo de categoria
       </button>
       <div
         id="myModal"

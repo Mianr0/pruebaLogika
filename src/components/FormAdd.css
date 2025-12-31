@@ -116,3 +116,11 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+#myBtn{
+  background-color: #1E1B4D;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px 30px;
+}

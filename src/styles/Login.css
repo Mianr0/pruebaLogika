@@ -3,8 +3,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 5%;
-
 }
 .loginForm {
     display: flex;
@@ -12,11 +10,17 @@
     align-items: center;
     justify-content: center;
     border: 1px solid #ccc;
-    padding: 20px;
+    padding-block: 20px;
     border-radius: 10px;
     background-color: #fff;
-    max-width: 55%;
-    max-height: 70%;
+    width: 35vw;
+    height: 80vh;
+    margin-top: 10%;
+}
+
+.loginForm h2 {
+    font-family: 'ArchivoMedium';
+    font-size: 18px;
 }
 
 .form {
@@ -24,12 +28,60 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+}
+
+.input-container {
+    position: relative;
+    width: 83%;
+    margin-bottom: 12px;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 10px 10px 10px 40px;
+    margin-bottom: 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.input-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    pointer-events: none;
+}
+
+.form label {
+    width: 83%;
+    text-align: left;
+    margin-bottom: 5px;
+    font-family: 'ArchivoLight';
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    margin-bottom: 40px;
 }
 
 .loginButton {
  display: flex;
+ background: #1E1B4D;
+ color: #fff;
+ border: none;
+ cursor: pointer;
+ padding: 10px 70px;
+ margin-bottom: 25px;
+ border-radius: 5px;
 }
 
 body {
     background: url("../assets/background.svg");
+    margin: 0;
+    padding: 0;
 }

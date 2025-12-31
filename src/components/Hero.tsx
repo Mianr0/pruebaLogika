@@ -95,8 +95,11 @@ export function Hero() {
   ];
 
   useEffect(() => {
+    setTimeout(() => {
+      let rowcontainer = document.querySelectorAll(".MuiDataGrid-row");
+      console.log("rowcontainer", rowcontainer);
+    }, 5000);
     setLoading(true);
-    // Hacer la petición cuando el componente se monta o cuando cambia la paginación
     apiClient
       .get(`/actions/admin-list?pageNumber=${page + 1}&pageSize=${pageSize}`)
       .then((response) => {
@@ -110,7 +113,7 @@ export function Hero() {
         setLoading(false);
         console.error("Error:", err);
       });
-  }, [page, pageSize]); // ← Dependencias agregadas
+  }, [page, pageSize]);
 
   if (loading) return <div>Cargando...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -125,6 +128,7 @@ export function Hero() {
       </div>
       <Paper sx={{ height: 350, width: "80%" }} className="paper">
         <DataGrid
+          data-cy="dataGrid"
           paginationMode="server"
           paginationModel={{ pageSize: pageSize, page: page }}
           onPaginationModelChange={(model) => {

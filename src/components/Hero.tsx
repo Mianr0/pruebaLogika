@@ -97,9 +97,9 @@ export function Hero() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="table">
+    <div className="table" data-cy="loadingTable">
       <h1>Categorias</h1>
-      <FormAdd />
+      <FormAdd data-cy="formAdd" />
       <Paper sx={{ height: 400, width: "80%" }} className="paper">
         <DataGrid
           paginationMode="server"

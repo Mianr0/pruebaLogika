@@ -7,7 +7,7 @@ export function FormAdd() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState<File | null>(null);
-  const [color, setColor] = useState("");
+  const [color, setColor] = useState("#000000");
   const [status, setStatus] = useState<number>(0);
   const [isError, setIsError] = useState(false);
 
@@ -28,12 +28,6 @@ export function FormAdd() {
       )
       .then((response) => {
         console.log(response.data);
-        /*         setName("");
-        setDescription("");
-        setFile(null);
-        setColor("");
-        setStatus(0);
-        setIsError(false);*/
         setOpen(false);
         document.getElementById("form")?.reset();
       })
@@ -45,7 +39,11 @@ export function FormAdd() {
 
   return (
     <div id="myModal" className="formAdd">
-      <button id="myBtn" onClick={() => setOpen(true)}>
+      <button
+        id="myBtn"
+        onClick={() => setOpen(true)}
+        data-cy="buttonOpenModal"
+      >
         Open Modal
       </button>
       <div
@@ -58,32 +56,40 @@ export function FormAdd() {
           }
         }}
       >
-        <div className="modal-content">
+        <div className="modal-content" data-cy="modalContent">
           <form onSubmit={handleSubmit} className="close" id="form">
             <h2>Crear categoria</h2>
             <label htmlFor="">Nombre de la categoria*</label>
             <input
               type="text"
+              data-cy="nameAdd"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
             <label htmlFor="">Descripcion de la buena accion*</label>
             <input
               type="text-area"
+              data-cy="descriptionAdd"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
             <label htmlFor="">Logo*</label>
-            <input type="file" onChange={(e) => setFile(e.target.files?.[0])} />
+            <input
+              type="file"
+              data-cy="fileAdd"
+              onChange={(e) => setFile(e.target.files?.[0])}
+            />
             <label htmlFor="">Color*</label>
             <input
               type="color"
+              data-cy="colorAdd"
               value={color}
               onChange={(e) => setColor(e.target.value)}
             />
             <label className="switch">
               <input
                 type="checkbox"
+                data-cy="statusAdd"
                 value={status}
                 onChange={(e) => {
                   setStatus(e.target.checked ? 1 : 0);
@@ -94,7 +100,9 @@ export function FormAdd() {
             {isError && (
               <label style={{ color: "red" }}>Error en la solicitud</label>
             )}
-            <button type="submit">Crear</button>
+            <button type="submit" data-cy="saveButton">
+              Crear
+            </button>
           </form>
         </div>
       </div>

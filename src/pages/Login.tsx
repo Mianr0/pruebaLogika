@@ -8,8 +8,10 @@ export function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const { setToken, setIsAuth } = useAuthStore();
   const { token } = useAuthStore();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (token) {
@@ -19,22 +21,30 @@ export function Login() {
   }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); 
+    e.preventDefault();
     console.log("Username:", email);
     console.log("Password:", password);
     let data = {
       username: email,
-      password: password
-    }
-    axios.post("https://dev.apinetbo.bekindnetwork.com/api/Authentication/Login", data)
-    .then((response) => {
-      setToken(response.data);
-      setIsAuth(true);
-      navigate("/dashboard");
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+      password: password,
+    };
+    setLoading(true);
+    axios
+      .post(
+        "https://dev.apinetbo.bekindnetwork.com/api/Authentication/Login",
+        data
+      )
+      .then((response) => {
+        setToken(response.data);
+        navigate("/dashboard");
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+        setError(true);
+        navigate("/");
+      });
   };
 
   return (
@@ -45,25 +55,31 @@ export function Login() {
           <h1>¡Empieza a conectar tu comunidad ante buenas acciones!</h1>
           <form onSubmit={handleSubmit} className="form">
             <label htmlFor="username">Correo Electronico*</label>
-            <input 
-              type="email" 
-              name="username" 
+            <input
+              type="email"
+              name="username"
               id="username"
+              data-cy="username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
             <label htmlFor="password">Contraseña*</label>
-            <input 
-              type="password" 
-              name="password" 
+            <input
+              type="password"
+              name="password"
               id="password"
+              data-cy="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
             <a href="">Recuperar contraseña</a>
-            <button type="submit" className="loginButton">Ingresar</button>
+            <button type="submit" className="loginButton" data-cy="login-btn">
+              Ingresar
+            </button>
+            {loading && <div>Loading...</div>}
+            {error && <div data-cy="authError">Error: {error}</div>}
           </form>
         </div>
       </main>

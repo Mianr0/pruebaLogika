@@ -58,7 +58,7 @@ export function FormAdd() {
       >
         <div className="modal-content" data-cy="modalContent">
           <form onSubmit={handleSubmit} className="close" id="form">
-            <h2>Crear categoria</h2>
+            <h2 style={{ color: "#1E1B4D" }}>Crear categoria</h2>
             <label htmlFor="">Nombre de la categoria*</label>
             <input
               type="text"
@@ -81,6 +81,7 @@ export function FormAdd() {
             />
             <label htmlFor="">Color*</label>
             <input
+              id="color"
               type="color"
               data-cy="colorAdd"
               value={color}
